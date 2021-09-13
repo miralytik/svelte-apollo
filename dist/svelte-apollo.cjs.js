@@ -2,9 +2,29 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+var _ = require('@apollo/client/core/');
 var core = require('@apollo/client/core');
 var store = require('svelte/store');
 var svelte = require('svelte');
+
+function SvelteApolloClient(options) {
+    var apolloClient = new _.ApolloClient(options);
+    apolloClient.query = function (_query, options) {
+        if (options === void 0) { options = {}; }
+        return query(apolloClient, _query, options);
+    };
+    apolloClient.mutation = function (_mutation) {
+        return mutation(apolloClient, _mutation);
+    };
+    apolloClient.restore = function (query, options) {
+        return restore(apolloClient, query, options);
+    };
+    apolloClient.subscribe = function (query, options) {
+        if (options === void 0) { options = {}; }
+        return subscribe(apolloClient, query, options);
+    };
+    return apolloClient;
+}
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -135,25 +155,6 @@ function subscribe(client, query, options) {
     if (options === void 0) { options = {}; }
     var observable = client.subscribe(__assign({ query: query }, options));
     return observableToReadable(observable);
-}
-
-function SvelteApolloClient(options) {
-    var apolloClient = new core.ApolloClient(options);
-    apolloClient.query = function (_query, options) {
-        if (options === void 0) { options = {}; }
-        return query(apolloClient, _query, options);
-    };
-    apolloClient.mutation = function (_mutation) {
-        return mutation(apolloClient, _mutation);
-    };
-    apolloClient.restore = function (query, options) {
-        return restore(apolloClient, query, options);
-    };
-    apolloClient.subscribe = function (query, options) {
-        if (options === void 0) { options = {}; }
-        return subscribe(apolloClient, query, options);
-    };
-    return apolloClient;
 }
 
 exports.SvelteApolloClient = SvelteApolloClient;
