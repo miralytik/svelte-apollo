@@ -1,4 +1,4 @@
-import { DataProxy, OperationVariables, SubscriptionOptions, WatchQueryOptions } from "@apollo/client";
+import { DataProxy, OperationVariables, SubscriptionOptions, WatchQueryOptions } from "@apollo/client/core/";
 import { ApolloClient } from "@apollo/client/core/";
 import { ApolloClientOptions } from "@apollo/client/core/ApolloClient";
 import { DocumentNode } from "graphql";

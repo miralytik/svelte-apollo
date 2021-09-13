@@ -1,6 +1,5 @@
-import { ApolloClient } from '@apollo/client/core/';
+import { ApolloClient, FetchResult, MutationOptions, ObservableQuery, WatchQueryOptions, OperationVariables, DataProxy, SubscriptionOptions } from '@apollo/client/core/';
 import { ApolloClientOptions } from '@apollo/client/core/ApolloClient';
-import { ApolloClient as ApolloClient$1, FetchResult, MutationOptions, ObservableQuery, WatchQueryOptions, OperationVariables, DataProxy, SubscriptionOptions } from '@apollo/client';
 import { DocumentNode } from 'graphql';
 import { ApolloError } from '@apollo/client/core';
 import { Readable } from 'svelte/store';
@@ -9,7 +8,7 @@ declare function SvelteApolloClient<T>(options: ApolloClientOptions<T>): ApolloC
 
 declare type MutateOptions<T = unknown, TVariables = unknown> = Omit<MutationOptions<T, TVariables>, "mutation">;
 declare type Mutate<T = unknown, TVariables = unknown> = (options: MutateOptions<T, TVariables>) => Promise<FetchResult<T>>;
-declare function mutation<T = unknown, TVariables = unknown>(client: ApolloClient$1<any>, mutation: DocumentNode): Mutate<T, TVariables>;
+declare function mutation<T = unknown, TVariables = unknown>(client: ApolloClient<any>, mutation: DocumentNode): Mutate<T, TVariables>;
 
 interface Loading {
     loading: true;
@@ -47,10 +46,10 @@ interface ObservableQueryExtensions<TData = unknown> {
 }
 declare type ReadableQuery<TData> = ReadableResult<TData> & ObservableQueryExtensions<TData>;
 
-declare function query<TData = unknown, TVariables = unknown>(client: ApolloClient$1<any>, query: DocumentNode, options?: Omit<WatchQueryOptions<TVariables, TData>, "query">): ReadableQuery<TData>;
+declare function query<TData = unknown, TVariables = unknown>(client: ApolloClient<any>, query: DocumentNode, options?: Omit<WatchQueryOptions<TVariables, TData>, "query">): ReadableQuery<TData>;
 
-declare function restore<TData = unknown, TVariables = OperationVariables>(client: ApolloClient$1<any>, query: DocumentNode, options: Omit<DataProxy.WriteQueryOptions<TData, TVariables>, "query">): void;
+declare function restore<TData = unknown, TVariables = OperationVariables>(client: ApolloClient<any>, query: DocumentNode, options: Omit<DataProxy.WriteQueryOptions<TData, TVariables>, "query">): void;
 
-declare function subscribe<TData = unknown, TVariables = unknown>(client: ApolloClient$1<any>, query: DocumentNode, options?: Omit<SubscriptionOptions<TVariables>, "query">): ReadableResult<TData>;
+declare function subscribe<TData = unknown, TVariables = unknown>(client: ApolloClient<any>, query: DocumentNode, options?: Omit<SubscriptionOptions<TVariables>, "query">): ReadableResult<TData>;
 
 export { ReadableQuery, ReadableResult, Result, SvelteApolloClient, mutation, query, restore, subscribe };

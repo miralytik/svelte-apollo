@@ -1,4 +1,4 @@
-import type { ApolloClient, FetchResult, MutationOptions } from "@apollo/client";
+import type { ApolloClient, FetchResult, MutationOptions } from  "@apollo/client/core/"
 import type { DocumentNode } from "graphql";
 
 export type MutateOptions<T = unknown, TVariables = unknown> = Omit<
